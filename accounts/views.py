@@ -13,6 +13,7 @@ from django.contrib import messages, auth
 from django.contrib.auth.decorators import login_required, user_passes_test
 
 from .utils import detectUser, send_verification_email
+from vendor.forms import Vendor
 
 
 # Restrict the vendor from accessing the customer page
@@ -58,7 +59,7 @@ def registerUser(request):
 
             # Send verification email
             mail_subject = 'Please activate your account'
-            email_template = 'accounts/emails/account_verification.html'
+            email_template = 'accounts/emails/account_verification_email.html'
             send_verification_email(request, user, mail_subject, email_template)
 
             messages.success(request, 'Account created successfully!')
@@ -97,7 +98,7 @@ def registerVendor(request):
 
             # Send verification email
             mail_subject = 'Please activate your account'
-            email_template = 'accounts/emails/account_verification.html'
+            email_template = 'accounts/emails/account_verification_email.html'
             send_verification_email(request, user, mail_subject, email_template)
             messages.success(request, 'Your account has been registered sucessfully! Please wait for th approval')
             return redirect('registerVendor')
